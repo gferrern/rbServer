@@ -1,23 +1,24 @@
 {
   "development": {
-    "username": "rebagRoot",
+    "username": "root",
     "password": "pass123",
-    "database": "db_rebag_dev",
-    "host": "127.0.0.1",
+    "database": "db_rebag",
+    "host": "localhost",
+    "port": "3306",
     "dialect": "mysql"
   },
   "test": {
-    "username": "rebagRoot",
+    "username": "root",
     "password": "pass123",
     "database": "db_rebag_test",
-    "host": "127.0.0.1",
+    "host": "mysql",
     "dialect": "mysql"
   },
   "production": {
-    "username": "rebagRoot",
+    "username": "root",
     "password": "pass123",
     "database": "db_rebag_prod",
-    "host": "127.0.0.1",
+    "host": "mysql",
     "dialect": "mysql"
   }
 }

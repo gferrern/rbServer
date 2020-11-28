@@ -1,0 +1,21 @@
+version: "3"
+services:
+  mysql-server:
+    image: mysql:8.0.19
+    restart: always
+    environment:
+      DB_HOSTNAME: mysql
+      MYSQL_ROOT_PASSWORD: pass123
+      MYSQL_DATABASE: db_rebag
+    ports:
+      - "3306:3306"
+   
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0.1
+    restart: always
+    environment:
+      PMA_HOST: mysql-server
+      PMA_USER: root
+      PMA_PASSWORD: pass123
+    ports:
+      - "8080:80"
