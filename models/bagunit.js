@@ -2,9 +2,8 @@
 const {
   Model
 } = require('sequelize');
-const typeService = require('../trash_models/typeService');
 module.exports = (sequelize, DataTypes) => {
-  class bagUnit extends Model {
+  class client extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,10 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
     }
   };
-  bagUnit.init({
+  client.init({
     type_bag_id: DataTypes.INTEGER,
     created_at:DataTypes.DATE,
     finished:DataTypes.TINYINT,
@@ -23,5 +21,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'bagUnit',
   });
-  return bagUnit;
+  return client;
 };

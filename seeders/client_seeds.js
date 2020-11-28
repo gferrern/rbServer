@@ -1,7 +1,6 @@
 'use strict';
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const saltText = "Hello Client";
 
 const user = require("../models/user");
 
@@ -16,8 +15,8 @@ module.exports = {
             [
               {
                 password: await bcrypt.genSalt(saltRounds)
-                  .then(salt => {
-                    return bcrypt.hash("user123", salt)
+                  .then(saltText => {
+                    return bcrypt.hash("user123", saltText)
                       .then(hash => {
                         return hash;
                       });
@@ -44,9 +43,10 @@ module.exports = {
             [
               {
                 password: await bcrypt.genSalt(saltRounds)
-                  .then(salt => {
-                    return bcrypt.hash("user987", salt)
+                  .then(saltText => {
+                    return bcrypt.hash("user987", saltText)
                       .then(hash => {
+                        console.log(saltText);
                         return hash;
                       });
                   }),

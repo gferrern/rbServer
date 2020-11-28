@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));// Setup a default catch-all
 require('./routes')(app);
 
 
-app.post('*', (req, res) => {
+app.post('/', (req, res) => {
      console.log('Got body:', req.body);
      res.sendStatus(200);
  });
