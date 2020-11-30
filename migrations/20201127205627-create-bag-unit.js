@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       type_bag_id: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       created_at: {
@@ -16,7 +17,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
-      finished: {
+      lifetime_finished: {
         allowNull: false,
         type: Sequelize.TINYINT
       }

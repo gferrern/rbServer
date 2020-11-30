@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
+      shopkeeper.belongsTo(models.user);
+      shopkeeper.hasMany(models.historical, { foreignKey: "shopkeeper_id"});
+    
     }
   };
   shopkeeper.init({

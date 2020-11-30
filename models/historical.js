@@ -11,21 +11,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      historical.belongsTo(models.shopkeeper);
+      historical.belongsTo(models.bagUnit);
+      historical.belongsTo(models.typeService);
+      historical.belongsTo(models.pay);
+      historical.belongsTo(models.client);
+
     }
   };
   historical.init({
-    client_id: Sequelize.INTEGER,
-    shopkeeper_id: Sequelize.INTEGER,
-    bag_unit_id: Sequelize.INTEGER,
-    typeservice_id: Sequelize.INTEGER,
-    requested_at: Sequelize.DATE,
-    expiration: Sequelize.DATE,
-    started_at: Sequelize.DATE,
-    status: Sequelize.ENUM('delivered','undelivered'),
-    returned_at: Sequelize.DATE,
-    pay_id: Sequelize.INTEGER,
-    paid: Sequelize.TINYINT,
-    updatedAt: Sequelize.DATE,
+    client_id: DataTypes.INTEGER,
+    shopkeeper_id: DataTypes.INTEGER,
+    bag_unit_id: DataTypes.INTEGER,
+    typeservice_id: DataTypes.INTEGER,
+    requested_at: DataTypes.DATE,
+    expiration: DataTypes.DATE,
+    started_at: DataTypes.DATE,
+    status: DataTypes.STRING,//sequelize.ENUM('delivered', 'undelivered'),
+    returned_at: DataTypes.DATE,
+    pay_id: DataTypes.INTEGER,
+    paid: DataTypes.TINYINT,
+    updatedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'historical',

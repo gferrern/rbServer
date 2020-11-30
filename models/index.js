@@ -1,58 +1,37 @@
-var DataTypes = require("sequelize").DataTypes;
-var _BAG_UNIT = require("./bagunit");
-var _CLIENT = require("./client");
-var _HISTORICAL = require("./historical");
-var _PAY = require("./pay");
-var _SHOPKEEPER = require("./shopkeeper");
-var _TYPESERVICE = require("./typeservice");
-var _TYPE_BAG = require("./typebag");
-var _USER = require("./user");
+'use strict';
 
-function initModels(sequelize) {
-  var BAG_UNIT = _BAG_UNIT(sequelize, DataTypes);
-  var CLIENT = _CLIENT(sequelize, DataTypes);
-  var HISTORICAL = _HISTORICAL(sequelize, DataTypes);
-  var PAY = _PAY(sequelize, DataTypes);
-  var SHOPKEEPER = _SHOPKEEPER(sequelize, DataTypes);
-  var TYPESERVICE = _TYPESERVICE(sequelize, DataTypes);
-  var TYPE_BAG = _TYPE_BAG(sequelize, DataTypes);
-  var USER = _USER(sequelize, DataTypes);
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
+const db = {};
 
-  BAG_UNIT.belongsTo(TYPE_BAG, { foreignKey: "type_bag_id"});
-  TYPE_BAG.hasMany(BAG_UNIT, { foreignKey: "type_bag_id"});
-  
-  CLIENT.belongsTo(USER, { foreignKey: "user_id"});
-  USER.hasMany(CLIENT, { foreignKey: "user_id"});
-  
-  HISTORICAL.belongsTo(CLIENT, { foreignKey: "client_id"});
-  CLIENT.hasMany(HISTORICAL, { foreignKey: "client_id"});
-  
-  HISTORICAL.belongsTo(SHOPKEEPER, { foreignKey: "shopkeeper_id"});
-  SHOPKEEPER.hasMany(HISTORICAL, { foreignKey: "shopkeeper_id"});
-  
-  HISTORICAL.belongsTo(BAG_UNIT, { foreignKey: "bag_unit_id"});  
-  BAG_UNIT.hasMany(HISTORICAL, { foreignKey: "bag_unit_id"});
-  
-  HISTORICAL.belongsTo(TYPESERVICE, { foreignKey: "typeservice_id"});
-  TYPESERVICE.hasMany(HISTORICAL, { foreignKey: "typeservice_id"});
-  
-  HISTORICAL.belongsTo(PAY, { foreignKey: "pay_id"});
-  PAY.hasMany(HISTORICAL, { foreignKey: "pay_id"});
-  
-  SHOPKEEPER.belongsTo(USER, { foreignKey: "user_id"});
-  USER.hasMany(SHOPKEEPER, { foreignKey: "user_id"});
-
-  return {
-    BAG_UNIT,
-    CLIENT,
-    HISTORICAL,
-    PAY,
-    SHOPKEEPER,
-    TYPESERVICE,
-    TYPE_BAG,
-    USER,
-  };
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-module.exports = initModels;
-module.exports.initModels = initModels;
-module.exports.default = initModels;
+
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
+  });
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      typeBag.hasMany(models.bagUnit, { foreignKey: "type_bag_id"});
     }
   };
   typeBag.init({

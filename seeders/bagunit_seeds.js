@@ -7,57 +7,57 @@ module.exports = {
         {
           type_bag_id: 1,
           created_at: new Date(),
-          finished: 0, //vida util
+          lifetime_finished: 0, 
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 0,
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 0,
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 0,
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 0,
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 0,
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 0,
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 0,
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 0,
+        },
+        {
+          type_bag_id: 1,
+          created_at: new Date(),
+          lifetime_finished: 1,
         },
         {
           type_bag_id: 2,
           created_at: new Date(),
-          finished: 0,
-        },
-        {
-          type_bag_id: 2,
-          created_at: new Date(),
-          finished: 0,
+          lifetime_finished: 1,
         }
       ]
     );

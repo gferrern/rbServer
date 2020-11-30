@@ -1,21 +1,20 @@
 const express = require('express');
 const logger = require('morgan');
+require('dotenv').config();
 const bodyParser = require('body-parser');// This will be our application entry. We'll setup our server here.
 const http = require('http');// Set up the express app
 const app = express();// Log requests to the console.
-app.use(logger('dev'));// Parse incoming requests data (https://github.com/expressjs/body-parser)
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));// Setup a default catch-all route that sends back a welcome message in JSON format.
-require('./routes')(app);
+app.use(logger('dev'));
 
 
-app.post('/', (req, res) => {
-     console.log('Got body:', req.body);
-     res.sendStatus(200);
- });
-app.get('*', (req, res) => res.status(200).send({
-     message: 'Welcome to the beginning of nothingness.',
-})); const port = parseInt(process.env.PORT, 10) || 8000;
-app.set('port', port); const server = http.createServer(app);
-server.listen(port); module.exports = app;
+const { Router } = require('express');
+const router = Router();
 
+const client = require('./controllers/client');
+const user = require('./controllers/user');
+app.use('/api', router);
+app.post('/api/create', client.create);
+app.post('/api/user', user.create);
+const PORT = process.env.PORT || 3300;
+
+app.listen(PORT, () => console.log(`Server1 is live at localhost:${PORT}`));
