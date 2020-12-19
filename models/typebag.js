@@ -11,14 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      typeBag.hasMany(models.bagUnit, { foreignKey: "type_bag_id"});
+      typeBag.hasMany(models.bagUnit, { foreignKey: "typeBagId"});
     }
   };
   typeBag.init({
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL,
-    measure_height_cm: DataTypes.DECIMAL,
-    measure_width_cm: DataTypes.DECIMAL
+    measureHeightCm: DataTypes.DECIMAL,
+    measureWidthCm: DataTypes.DECIMAL,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'typeBag',

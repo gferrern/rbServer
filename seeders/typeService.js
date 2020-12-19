@@ -6,11 +6,13 @@ module.exports = {
       [
         {
           name: "Prestamo",
-          for_time: new Date(86400000) //timestamp 30 days
+          forTime: 30, //30 days
+          moneyinreserve:0
         },
         {
           name: "Deposito",
-          for_time: new Date(0), //timestamp of 0
+          forTime: 0, // 0 days
+          moneyinreserve:0
         }
       ]
     

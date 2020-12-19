@@ -14,24 +14,63 @@ module.exports = (sequelize, DataTypes) => {
       historical.belongsTo(models.shopkeeper);
       historical.belongsTo(models.bagUnit);
       historical.belongsTo(models.typeService);
-      historical.belongsTo(models.pay);
       historical.belongsTo(models.client);
-
     }
-  };
+
+    static findIfAvaiable(idParam) {
+      return this.findAll({
+        attributes: [
+          sequelize.fn('MAX', sequelize.col('id')),
+          sequelize.col('status')
+        ],
+        where: { bagUnitId: idParam },
+        group: ['id']
+      });
+    }
+
+    static checkIfExpiresBagLoans(models) {
+      const { Op } = require("sequelize");
+      var cron = require('node-cron');
+      async function attemporalContracts(models) {
+        //all typeservices with forType 0 are atemporal services
+        return await models.typeService.findAll({ where: { forTime: { [Op.gt]: 0 }, }, attributes: ['id'] }).then((rows) => {
+          return rows.map((r) => {
+            return r.id;
+          })
+        });
+      }
+      const attemporalcontracts = attemporalContracts(models).then(attemporalcontractsIds => {
+        cron.schedule('* 55 23 * * *', () => {
+          this.findAndCountAll({
+            where: {
+              [Op.and]: [
+                { status: 'undelivered' },
+                { paid: 0 }, {
+                  expiration: { [Op.lt]: new Date() }
+                },
+                { typeserviceId: { [Op.notIn]: attemporalcontractsIds } }
+              ],
+            },
+          });
+        });
+      });
+    }
+  }
+
   historical.init({
-    client_id: DataTypes.INTEGER,
-    shopkeeper_id: DataTypes.INTEGER,
-    bag_unit_id: DataTypes.INTEGER,
-    typeservice_id: DataTypes.INTEGER,
-    requested_at: DataTypes.DATE,
+    clientId: DataTypes.INTEGER,
+    shopkeeperId: DataTypes.INTEGER,
+    bagUnitId: DataTypes.INTEGER,
+    typeserviceId: DataTypes.INTEGER,
+    requestedAt: DataTypes.DATE,
     expiration: DataTypes.DATE,
-    started_at: DataTypes.DATE,
+    startedAt: DataTypes.DATE,
     status: DataTypes.STRING,//sequelize.ENUM('delivered', 'undelivered'),
-    returned_at: DataTypes.DATE,
-    pay_id: DataTypes.INTEGER,
+    returnedAt: DataTypes.DATE,
+    price: DataTypes.INTEGER,
     paid: DataTypes.TINYINT,
     updatedAt: DataTypes.DATE,
+    createdAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'historical',

@@ -8,23 +8,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      client_id: {
+      clientId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      shopkeeper_id: {
+      shopkeeperId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      bag_unit_id: {
+      bagUnitId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      typeservice_id: {
+      typeserviceId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      requested_at: {
+      requestedAt: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true
       },
-      started_at: {
+      startedAt: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
@@ -42,11 +42,11 @@ module.exports = {
         type: Sequelize.ENUM('delivered','undelivered'),
         allowNull: true
       },
-      returned_at: {
+      returnedAt: {
         type: Sequelize.DATE,
         allowNull: true
       },
-      pay_id: {
+      price: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
@@ -56,6 +56,11 @@ module.exports = {
         defaultValue: 0
       },
       updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      },
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')

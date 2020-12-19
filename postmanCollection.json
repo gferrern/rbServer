@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "b16db17a-83d7-4876-90c3-75da022b7a6b",
+		"name": "rbServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "take a bag",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client_id\": 1,\n    \"bag_unit_id\": 1,\n    \"typeservice_id\": 1,\n    \"id\": 30\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3300/api/historical/returnBag",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"historical",
+						"returnBag"
+					]
+				},
+				"description": "takeBag"
+			},
+			"response": []
+		},
+		{
+			"name": "create client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": {\"password\":\"123\"},\n    \"full_name\":\"Guillermo\",\n    \"address\":\"Ferrer\",\n    \"zipcode\":\"22520\",\n    \"city\":\"fraga\",\n    \"state\":\"españa\",\n    \"administrativeArea\":\"aragon\",\n    \"administrativeArea2\":\"huesca\",\n    \"email\":\"pepe@mail.com\",\n    \"banned\":\"1\",\n    \"phone\":\"9879832\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3300/api/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"client",
+						"create"
+					]
+				},
+				"description": "create a client"
+			},
+			"response": []
+		},
+		{
+			"name": "return a bag",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client_id\": 1,\n    \"bag_unit_id\": 1,\n    \"typeservice_id\": 1,\n    \"id\": 30\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3300/api/historical/returnBag",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"historical",
+						"returnBag"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create shopkeeper",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": {\"password\":\"123\"},\n    \"full_name\":\"green shop\",\n    \"address\":\"gran via 100\",\n    \"zipcode\":\"22520\",\n    \"city\":\"Barcelona\",\n    \"state\":\"españa\",\n    \"administrativeArea\":\"Barcelona\",\n    \"administrativeArea2\":\"Barcelona\",\n    \"email\":\"green@mail.com\",\n    \"banned\":0,\n    \"lat\":40.20,\n    \"lon\":-10,\n    \"phone\":\"9879832\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3300/api/shop/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"shop",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

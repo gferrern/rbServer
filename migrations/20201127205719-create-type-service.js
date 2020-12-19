@@ -12,10 +12,24 @@ module.exports = {
         type: Sequelize.STRING(255),
         allowNull: true
       },
-      for_time: {
-        type: Sequelize.DATE,
+      forTime: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: "1970-01-01 00:00:01"
+        defaultValue: 0
+      },
+      moneyinreserve: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      createdAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
       }
     });
   },

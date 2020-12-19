@@ -6,7 +6,7 @@ const models = require('../models');
 const create = async function (req, res) {
   try {
     return res.status(201).json(await models.user.create({ password: req.body.userId.password },).then(function(user) {
-      return models.client.create({
+      return models.shopkeeper.create({
         userId: user.id,
         fullName: req.body.fullName,
         address: req.body.address,
@@ -17,7 +17,9 @@ const create = async function (req, res) {
         administrativeArea2: req.body.administrativeArea2,
         email: req.body.email,
         banned: req.body.banned,
-        phone: req.body.phone
+        phone: req.body.phone,
+        lat: req.body.lat,
+        lon: req.body.lon,
       });
     }));
   } catch (error) {
@@ -27,20 +29,21 @@ const create = async function (req, res) {
 
 const bann = async function (req, res) {
   try {
-    const [ updated ] = await models.client.update({
+    const [ updated ] = await models.shopkeeper.update({
       banned: 1,
     }, {
-      where: { id: req.body.clientId }
+      where: { id: req.body.id }
     });
     if (updated) {
-      const bann = await models.client.findOne({ where: { id: req.body.clientId} });
+      const bann = await models.shopkeeper.findOne({ where: { id: req.body.id} });
       return res.status(200).json({bann});
     }
-    throw new Error('Client not found');
+    throw new Error('Shopkeeper not found');
   } catch (error) {
     return res.status(500).send(error.message);
   }
 }
+
 module.exports = {
   create,bann
 }

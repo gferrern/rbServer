@@ -6,15 +6,15 @@ module.exports = {
       [
         {
           name: "Grande",
-          price: 3.2,
-          measure_height_cm: 50.3,
-          measure_width_cm: 20.8
+          price: 3,
+          measureHeightCm: 50.3,
+          measureWidthCm: 20.8,
         },
         {
           name: "Media",
           price: 3,
-          measure_height_cm: 20.9,
-          measure_width_cm: 10.9
+          measureHeightCm: 20.9,
+          measureWidthCm: 10.9,
         }
       ]
     );

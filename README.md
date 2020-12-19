@@ -77,8 +77,8 @@ Es recomendable tener previamente instalado por lo menos los siguientes programa
    
 5. ahora hay que crear una nueva base de datos y migrar datos
    ```sh
-   sequelize model:generate
-   sequelize controller:generate
+   sequelize db:create
+   sequelize db:migrate
    sequelize db:seed:all
    ```
    

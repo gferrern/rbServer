@@ -12,13 +12,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      bagUnit.hasMany(models.historical, { foreignKey: "bag_unit_id"});
+      bagUnit.hasMany(models.historical, { foreignKey: "bagUnitId"});
     }
   };
   bagUnit.init({
-    type_bag_id: DataTypes.INTEGER,
-    created_at:DataTypes.DATE,
-    lifetime_finished:DataTypes.TINYINT,
+    typeBagId: DataTypes.INTEGER,
+    createdAt:DataTypes.DATE,
+    updatedAt:DataTypes.DATE,
+    lifetimeFinished:DataTypes.TINYINT,
   }, {
     sequelize,
     modelName: 'bagUnit',

@@ -8,18 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      full_name: {
+      fullName: {
         type: Sequelize.STRING(255),
         allowNull: false
-      },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       address: {
         type: Sequelize.STRING(255),
@@ -57,6 +52,16 @@ module.exports = {
       phone: {
         type: Sequelize.STRING(255),
         allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
       }
     });
   },

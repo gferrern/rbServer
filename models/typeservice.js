@@ -12,13 +12,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association herecl
-      typeService.hasMany(models.historical, { foreignKey: "typeservice_id"});
+      typeService.hasMany(models.historical, { foreignKey: "typeserviceId"});
 
     }
   };
   typeService.init({
     name: DataTypes.STRING,
-    for_time: DataTypes.DATE,
+    forTime: DataTypes.INTEGER,
+    moneyinreserve: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'typeService',

@@ -9,11 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
 
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      full_name: {
+      fullName: {
         type: Sequelize.STRING(255),
         allowNull: false
       },
@@ -49,11 +49,6 @@ module.exports = {
         type: Sequelize.DOUBLE,
         allowNull: false
       },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      },
       banned: {
         type: Sequelize.TINYINT,
         allowNull: false,
@@ -66,6 +61,16 @@ module.exports = {
       phone: {
         type: Sequelize.STRING(255),
         allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
       }
     });
   },

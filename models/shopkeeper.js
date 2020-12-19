@@ -12,13 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       shopkeeper.belongsTo(models.user);
-      shopkeeper.hasMany(models.historical, { foreignKey: "shopkeeper_id"});
-    
+      shopkeeper.hasMany(models.historical, { foreignKey: "shopkeeperId"});
     }
   };
   shopkeeper.init({
-    user_id: DataTypes.INTEGER,
-    full_name: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
+    fullName: DataTypes.STRING,
     address: DataTypes.STRING,
     zipcode: DataTypes.STRING(5),
     city: DataTypes.STRING(10),
@@ -27,10 +26,11 @@ module.exports = (sequelize, DataTypes) => {
     administrativeArea2: DataTypes.STRING,
     lat: DataTypes.DOUBLE,
     lon: DataTypes.DOUBLE,
-    created_at: DataTypes.DATE,
     banned: DataTypes.TINYINT,
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'shopkeeper',

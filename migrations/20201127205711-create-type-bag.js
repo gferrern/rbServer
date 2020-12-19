@@ -16,13 +16,23 @@ module.exports = {
         type: Sequelize.DECIMAL(10,0),
         allowNull: false
       },
-      measure_height_cm: {
+      measureHeightCm: {
         type: Sequelize.DECIMAL(10,0),
         allowNull: false
       },
-      measure_width_cm: {
+      measureWidthCm: {
         type: Sequelize.DECIMAL(10,0),
         allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
       }
     });
   },
