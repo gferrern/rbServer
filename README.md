@@ -48,39 +48,24 @@ Hola chic@s de GOZEROWASTE, este es el servicio para dar soporte a la aplicació
 * [docker](https://www.docker.com/)
 * [nodejs](https://nodejs.org/en/)
 * [sequelize](https://sequelize.org/)
+* [flutter](https://flutter.dev/)
+* [dart](https://dart.dev/)
+* [stripe](https://stripe.com)
 
 
-### Prerequisites
+### Pre-requisitos
 
-Es recomendable tener previamente instalado por lo menos los siguientes programas:
+1. Es necesario tener instalado siguientes programas (luego docker va instalando las dependencias necesarias en las máquinas virtuales)
 * postman
-* visual studio code
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Visual Studio Code https://code.visualstudio.com/download
+  es necesario tener instalado el plugin de Docker y Kubernetes
+* NodeJs https://nodejs.org/en/ (trae npm)
+* Docker (npm i docker) https://www.npmjs.com/package/docker
 
-### Installation
+### Instalación
 
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Tenemos que verificar la configuracion del docker (con este comando tendremos un servidor de MySql y phpMyAdmin)
-   ```sh
-   docker-compose up -d
-   ```
-   
-5. ahora hay que crear una nueva base de datos y migrar datos
-   ```sh
-   sequelize db:create
-   sequelize db:migrate
-   sequelize db:seed:all
-   ```
-   
+2. Solo un comando: (Este comando ejecuta lo que he configurado en el docker-compose y los Dockerfile de cada máquina, creo que es conveniente que antes de ejecutarlo analiceis estos ficheros para comprender mejor)
+   ``` docker composer up ```
 
+   y
 Listo!

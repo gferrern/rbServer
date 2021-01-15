@@ -6,71 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "take a bag",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"client_id\": 1,\n    \"bag_unit_id\": 1,\n    \"typeservice_id\": 1,\n    \"id\": 30\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3300/api/historical/returnBag",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3300",
-					"path": [
-						"api",
-						"historical",
-						"returnBag"
-					]
-				},
-				"description": "takeBag"
-			},
-			"response": []
-		},
-		{
-			"name": "create client",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"user_id\": {\"password\":\"123\"},\n    \"full_name\":\"Guillermo\",\n    \"address\":\"Ferrer\",\n    \"zipcode\":\"22520\",\n    \"city\":\"fraga\",\n    \"state\":\"españa\",\n    \"administrativeArea\":\"aragon\",\n    \"administrativeArea2\":\"huesca\",\n    \"email\":\"pepe@mail.com\",\n    \"banned\":\"1\",\n    \"phone\":\"9879832\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3300/api/client/create",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3300",
-					"path": [
-						"api",
-						"client",
-						"create"
-					]
-				},
-				"description": "create a client"
-			},
-			"response": []
-		},
-		{
 			"name": "return a bag",
 			"request": {
 				"auth": {
@@ -80,7 +15,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"client_id\": 1,\n    \"bag_unit_id\": 1,\n    \"typeservice_id\": 1,\n    \"id\": 30\n}",
+					"raw": "{\n    \"id\": 1,\n    \"bagUnitId\": 1,\n    \"typeserviceId\": 1,\n    \"shopkeeperId\": 1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -104,13 +39,76 @@
 			"response": []
 		},
 		{
+			"name": "take a bag",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"clientId\": 1,\n    \"shopkeeperId\": 1,\n    \"bagUnitId\": 1,\n    \"typeserviceId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3300/api/historical/takeBag",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"historical",
+						"takeBag"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": {\"password\":\"123\"},\n    \"fullName\":\"Guillermo\",\n    \"address\":\"Ferrer\",\n    \"zipcode\":\"22520\",\n    \"city\":\"fraga\",\n    \"state\":\"españa\",\n    \"administrativeArea\":\"aragon\",\n    \"administrativeArea2\":\"huesca\",\n    \"email\":\"pepe@mail.com\",\n    \"banned\":\"1\",\n    \"phone\":\"9879832\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3300/api/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "create shopkeeper",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"user_id\": {\"password\":\"123\"},\n    \"full_name\":\"green shop\",\n    \"address\":\"gran via 100\",\n    \"zipcode\":\"22520\",\n    \"city\":\"Barcelona\",\n    \"state\":\"españa\",\n    \"administrativeArea\":\"Barcelona\",\n    \"administrativeArea2\":\"Barcelona\",\n    \"email\":\"green@mail.com\",\n    \"banned\":0,\n    \"lat\":40.20,\n    \"lon\":-10,\n    \"phone\":\"9879832\"\n}",
+					"raw": "{\n    \"userId\": {\"password\":\"123\"},\n    \"fullName\":\"green shop\",\n    \"address\":\"gran via 100\",\n    \"zipcode\":\"22520\",\n    \"city\":\"Barcelona\",\n    \"state\":\"españa\",\n    \"administrativeArea\":\"Barcelona\",\n    \"administrativeArea2\":\"Barcelona\",\n    \"email\":\"green@mail.com\",\n    \"banned\":0,\n    \"lat\":40.20,\n    \"lon\":-10,\n    \"phone\":\"9879832\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -127,6 +125,39 @@
 					"path": [
 						"api",
 						"shop",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a bag",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"typeBagId\": 1,\n    \"createdAt\": \"\",\n    \"lifetimeFinished\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3300/api/bag/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"bag",
 						"create"
 					]
 				}

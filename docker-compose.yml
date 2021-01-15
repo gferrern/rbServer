@@ -1,21 +1,68 @@
 version: "3"
 services:
+  rebag_frontend:
+    image: debian:latest
+    build: ./rebag_frontend
+    networks:
+      - front_network
+    restart: "unless-stopped"
+    environment:
+      SECRETS: "234215313451"
+    ports:
+      - "80:80"
+    volumes:
+      - frontend-data:/usr/local/bin/rebag_frontend
+
+  rebag_backend:
+    image: node:lts-alpine
+    build: ./rebag_backend
+    restart: "unless-stopped"
+    networks:
+      - back_network
+      - front_network
+    depends_on:
+      - mysql-server
+    ports:
+      - "3000:3000"
+    environment:
+      SECRETS: "234215313451"
+    volumes: 
+      - backend-data:/home/node/api
   mysql-server:
     image: mysql:8.0.19
-    restart: always
+    networks:
+      - back_network
+    restart: "unless-stopped"
     environment:
       DB_HOSTNAME: mysql
       MYSQL_ROOT_PASSWORD: pass123
       MYSQL_DATABASE: db_rebag
     ports:
       - "3306:3306"
-   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.0.1
-    restart: always
+    restart: "unless-stopped"
+    networks:
+      - back_network
+      - test_network
+    depends_on:
+      - mysql-server
     environment:
       PMA_HOST: mysql-server
       PMA_USER: root
       PMA_PASSWORD: pass123
     ports:
       - "8080:80"
+
+networks:
+  back_network:
+    driver: bridge
+    internal: true #restrict internet
+  front_network:
+    driver: bridge
+  test_network:
+    driver: bridge
+volumes:
+  db-data:
+  frontend-data:
+  backend-data:

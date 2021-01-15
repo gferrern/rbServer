@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password": "pass123",
+    "database": "db_rebag",
+    "host": "mysql-server",
+    "port": "3306",
+    "dialect": "mysql"
+  }
+}
